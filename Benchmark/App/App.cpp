@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <assert.h>
+#include <chrono>
 
 # include <unistd.h>
 # include <pwd.h>
@@ -202,18 +203,24 @@ int SGX_CDECL main(int argc, char *argv[])
     (void)(argc);
     (void)(argv);
 
-
+    printf("Preparing to launch enclave...\n");
+    auto start = std::chrono::high_resolution_clock::now();
     /* Initialize the enclave */
     if(initialize_enclave() < 0){
         printf("Enter a character before exit ...\n");
         getchar();
         return -1; 
     }
+    printf("Enclave successfully created.\n" );
  
     printf_helloworld(global_eid);
 
+
+    auto end = std::chrono::high_resolution_clock::now();
+    std::chrono::duration<double, std::milli> execution_time = end - start;
+    printf("Enclave execution time: %.3f ms\n", execution_time.count());
+
     /* Destroy the enclave */
-    sgx_destroy_enclave(global_eid);
-    
+    sgx_destroy_enclave(global_eid);    
     return 0;
 }
