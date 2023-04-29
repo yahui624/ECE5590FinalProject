@@ -188,14 +188,9 @@ int initialize_enclave(void)
 }
 
 /* OCall functions */
-void ocall_print_string(const char *str)
-{
-    /* Proxy/Bridge will check the length and null-terminate 
-     * the input string to prevent buffer overflow. 
-     */
+void ocall_print_string(const char *str) {
     printf("%s", str);
 }
-
 
 /* Application entry */
 int SGX_CDECL main(int argc, char *argv[])
@@ -205,16 +200,14 @@ int SGX_CDECL main(int argc, char *argv[])
 
     printf("Preparing to launch enclave...\n");
     auto start = std::chrono::high_resolution_clock::now();
-    /* Initialize the enclave */
+
     if(initialize_enclave() < 0){
         printf("Enter a character before exit ...\n");
         getchar();
         return -1; 
     }
     printf("Enclave successfully created.\n" );
- 
     printf_helloworld(global_eid);
-
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> execution_time = end - start;
