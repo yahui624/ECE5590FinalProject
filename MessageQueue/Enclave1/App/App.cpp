@@ -20,7 +20,6 @@
 
 extern std::map<sgx_enclave_id_t, uint32_t>g_enclave_id_map;
 
-
 sgx_enclave_id_t e1_enclave_id = 0;
 
 #define ENCLAVE1_PATH "libenclave1.so"

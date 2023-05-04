@@ -1,0 +1,6 @@
+hostworker1_enclaveworker1.txt
+1000000 host_increment_switchless() calls: 1000000 + 1000000 = 2000000. Time spent: 816 ms
+1000000 host_increment_regular() calls: 1000000 + 1000000 = 2000000. Time spent: 4044 ms
+1000000 enclave_decrement_switchless() calls: 1000000 - 1000000 = 0. Time spent: 1314 ms
+1000000 enclave_decrement_regular() calls: 1000000 - 1000000 = 0. Time spent: 6098 ms
+hostworker1_enclaveworker2.txt
